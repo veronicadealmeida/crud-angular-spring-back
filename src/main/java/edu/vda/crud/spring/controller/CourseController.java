@@ -50,7 +50,7 @@ public class CourseController {
 
             Course b = new Course();
             b.setName("Spring");
-            b.setCategory("front-end");
+            b.setCategory("back-end");
             courseRepository.save(b);
         };
     }
