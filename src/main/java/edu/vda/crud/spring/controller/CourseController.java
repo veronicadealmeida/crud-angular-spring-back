@@ -24,6 +24,13 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Course> findById(@PathVariable Long id){
+        return courseRepository.findById(id)
+                .map(record ->  ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Course create(@RequestBody Course course){
@@ -36,10 +43,15 @@ public class CourseController {
         return args -> {
             courseRepository.deleteAll();
 
-            Course c = new Course();
-            c.setName("Angular com Spring");
-            c.setCategory("front-end");
-            courseRepository.save(c);
+            Course a = new Course();
+            a.setName("Angular");
+            a.setCategory("front-end");
+            courseRepository.save(a);
+
+            Course b = new Course();
+            b.setName("Spring");
+            b.setCategory("front-end");
+            courseRepository.save(b);
         };
     }
 }
